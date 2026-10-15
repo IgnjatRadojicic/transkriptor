@@ -1,0 +1,9 @@
+.env
+snimci/
+modeli/
+*.m4a
+*.mp3
+*.wav
+.whisperx.log
+.build*.log
+__pycache__/

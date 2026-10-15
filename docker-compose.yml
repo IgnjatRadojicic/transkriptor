@@ -1,0 +1,19 @@
+services:
+  transkriptor:
+    build: .
+    image: transkriptor
+    env_file: .env
+    # ovo uvek pobedi .env, da HF_HOME za WSL ne pokvari putanje u kontejneru
+    environment:
+      HF_HOME: /modeli
+      WHISPERX: whisperx
+    volumes:
+      - ${SNIMCI:-./snimci}:/snimci
+      - ${MODELI:-./modeli}:/modeli
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
